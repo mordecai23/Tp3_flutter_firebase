@@ -52,20 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List listoption2 = ["5"];
   List listcorrectans = ["2"];
   var listTheme = <String>[];
-  _MyHomePageState() {
-    databaseReference
-        .collection("theme")
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      for (var f in snapshot.documents) {
-        Map<String, dynamic> theme = f.data;
-        print(theme['value']);
-        listTheme.add(theme['value']);
-      }
-    });
-  }
 
   void getThemes() {
+    var ltheme = <String>[];
     databaseReference
         .collection("theme")
         .getDocuments()
@@ -73,10 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
       for (var f in snapshot.documents) {
         Map<String, dynamic> theme = f.data;
         print(theme['value']);
-        if (!listTheme.contains(theme['value'])) {
-          listTheme.add(theme['value']);
+        if (!ltheme.contains(theme['value'])) {
+          ltheme.add(theme['value']);
         }
       }
+      setState(() {
+        listTheme.clear();
+        listTheme.addAll(ltheme);
+      });
     });
   }
 
@@ -157,6 +150,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    getThemes();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -179,23 +174,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       Icons.add,
                       color: Colors.blue,
                     ),
-                    iconSize: 30.0,
+                    iconSize: 35.0,
                   ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: Colors.teal),
-                      onPressed: () {
-                        setState(() {
-                          getThemes();
-                        });
-                      },
-                      child: Text("Afficher les thèmes")),
                   DropdownButton<String>(
                     value: defaultchoice,
                     elevation: 16,
-                    style: const TextStyle(color: Colors.blue),
+                    style: const TextStyle(color: Colors.teal),
                     underline: Container(
-                      height: 2,
-                      color: Colors.blue,
+                      height: 3,
+                      color: Colors.teal,
                     ),
                     onChanged: (String newValue) {
                       setState(() {
@@ -214,13 +201,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ]),
             new Container(
-                width: 400.0,
+                width: 350.0,
                 height: 150.0,
                 decoration: new BoxDecoration(
                     image: new DecorationImage(
                         fit: BoxFit.fill,
                         image: new NetworkImage(
-                            "https://windoo-storage.ams3.digitaloceanspaces.com/standard_picture/5de0f7ed7988f358568331.jpg")))),
+                            "https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg")))),
             Container(
               margin: EdgeInsets.only(top: 20, bottom: 20),
               width: 300,
@@ -229,16 +216,16 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: new BoxDecoration(
                   color: Colors.blue,
                   borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(30.0),
-                      topRight: const Radius.circular(30.0),
-                      bottomLeft: const Radius.circular(30.0),
-                      bottomRight: const Radius.circular(30.0))),
+                      topLeft: const Radius.circular(20.0),
+                      topRight: const Radius.circular(20.0),
+                      bottomLeft: const Radius.circular(20.0),
+                      bottomRight: const Radius.circular(20.0))),
               child: Text(
                 listquestion[index],
                 style: new TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 20),
+                    fontSize: 18),
                 textAlign: TextAlign.center,
               ),
             ),
