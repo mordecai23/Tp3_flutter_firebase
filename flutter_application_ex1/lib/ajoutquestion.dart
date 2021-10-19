@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
+// ignore_for_file: unnecessary_new, prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, deprecated_member_use
 // @dart=2.9
 
 import 'package:flutter/material.dart';
@@ -35,7 +35,6 @@ class AjoutQuestionState extends State<AjoutQuestion> {
           children: <Widget>[
             TextFormField(
               controller: controllerquestion,
-              // ignore: deprecated_member_use
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -47,7 +46,6 @@ class AjoutQuestionState extends State<AjoutQuestion> {
             ),
             TextFormField(
               controller: controlleroption1,
-              // ignore: deprecated_member_use
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -59,7 +57,6 @@ class AjoutQuestionState extends State<AjoutQuestion> {
             ),
             TextFormField(
               controller: controlleroption2,
-              // ignore: deprecated_member_use
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -71,8 +68,6 @@ class AjoutQuestionState extends State<AjoutQuestion> {
             ),
             TextFormField(
               controller: controllerreponse,
-              // ignore: deprecated_member_use
-
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -84,8 +79,6 @@ class AjoutQuestionState extends State<AjoutQuestion> {
             ),
             TextFormField(
               controller: controllertheme,
-              // ignore: deprecated_member_use
-
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),

@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_new, prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 // @dart=2.9
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -61,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .then((QuerySnapshot snapshot) {
       for (var f in snapshot.documents) {
         Map<String, dynamic> theme = f.data;
-        print(theme['value']);
+
         if (!ltheme.contains(theme['value'])) {
           ltheme.add(theme['value']);
         }
@@ -74,8 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getQuestions(String val) {
-    int i = 0;
-
     List lq = <String>[];
     List lo1 = <String>[];
     List lo2 = <String>[];
@@ -88,16 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
       for (var f in snapshot.documents) {
         Map<String, dynamic> question = f.data;
         if (question['theme'].toString() == val) {
-          // print(question['texte']);
-
           lq.add(question['texte'].toString());
           lo1.add(question['option1'].toString());
           lo2.add(question['option2'].toString());
           rep.add(question['reponse'].toString());
-          print(lq[i]);
-          i++;
         }
-        //print('huguygyufyufutfu, ${question['reponse']}');
       }
       setState(() {
         index = 0;
@@ -178,6 +169,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   DropdownButton<String>(
                     value: defaultchoice,
+                    icon: const Icon(Icons.arrow_downward),
+                    iconSize: 20,
                     elevation: 16,
                     style: const TextStyle(color: Colors.teal),
                     underline: Container(
